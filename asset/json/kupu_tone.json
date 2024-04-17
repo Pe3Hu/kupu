@@ -1,0 +1,37 @@
+[
+ {
+  "title": "red",
+  "hue": 0,
+  "spectrum ": "bass"
+ },
+ {
+  "title": "orange",
+  "hue": 30,
+  "spectrum ": "bass"
+ },
+ {
+  "title": "yellow",
+  "hue": 60,
+  "spectrum ": "baritone,bass"
+ },
+ {
+  "title": "green",
+  "hue": 120,
+  "spectrum ": "baritone"
+ },
+ {
+  "title": "blue",
+  "hue": 220,
+  "spectrum ": "tenor,baritone"
+ },
+ {
+  "title": "indigo",
+  "hue": 270,
+  "spectrum ": "tenor"
+ },
+ {
+  "title": "violet",
+  "hue": 300,
+  "spectrum ": "tenor"
+ }
+]
