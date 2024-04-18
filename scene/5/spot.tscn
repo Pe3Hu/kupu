@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene/5/spot.gd" id="1_34c5p"]
 [ext_resource type="PackedScene" uid="uid://ciw38iqel0v5a" path="res://scene/0/icon.tscn" id="2_h6nmm"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2hji"]
 
 [node name="Spot" type="MarginContainer"]
 custom_minimum_size = Vector2(5, 5)
@@ -12,20 +12,41 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -4.0
+offset_top = -5.0
+offset_right = 4.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_34c5p")
 
-[node name="BG" type="Panel" parent="."]
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="First" type="PanelContainer" parent="HBox"]
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p2hji")
+
+[node name="Second" type="PanelContainer" parent="HBox"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p2hji")
+
+[node name="Third" type="PanelContainer" parent="HBox"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p2hji")
 
 [node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -33,12 +54,7 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Group" parent="VBox" instance=ExtResource("2_h6nmm")]
-visible = false
 layout_mode = 2
 
-[node name="Shade" parent="VBox" instance=ExtResource("2_h6nmm")]
-visible = false
-layout_mode = 2
-
-[node name="Order" parent="VBox" instance=ExtResource("2_h6nmm")]
+[node name="Morpheme" parent="VBox" instance=ExtResource("2_h6nmm")]
 layout_mode = 2

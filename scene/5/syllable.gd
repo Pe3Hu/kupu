@@ -6,6 +6,7 @@ extends MarginContainer
 
 var proprietor = null
 var length = null
+var morpheme = null
 #endregion
 
 
@@ -25,11 +26,15 @@ func init_basic_setting() -> void:
 func add_spot() -> void:
 	var input = {}
 	input.syllable = self
-	input.group = "vowel"
-	input.shade = "tenor"
-	input.order = "root"
+	input.group = roll("group")
+	input.shade = roll("shade")
+	input.morpheme = morpheme
 
 	var spot = Global.scene.spot.instantiate()
 	spots.add_child(spot)
 	spot.set_attributes(input)
+
+
+func roll(type_: String) -> String:
+	return Global.get_random_key(Global.dict.tag.type[type_])
 #endregion

@@ -26,6 +26,7 @@ func init_arr() -> void:
 	arr.feature = ["group", "shade"]
 	arr.letter = ["a", "b", "c", "d", "e", "x", "y", "z"]
 	arr.tone = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
+	arr.morpheme = ["prefix", "root", "suffix"]
 
 
 func init_num() -> void:
@@ -51,6 +52,9 @@ func init_dict() -> void:
 	init_letter()
 	init_tone()
 	init_tag()
+	init_mission()
+	init_zone()
+	init_mask()
 
 
 func init_neighbor() -> void:
@@ -133,6 +137,7 @@ func init_letter() -> void:
 	
 	for letter in array:
 		var data = {}
+		data.tags = []
 		
 		for key in letter:
 			if !exceptions.has(key):
@@ -145,6 +150,9 @@ func init_letter() -> void:
 					dict.letter[key][letter[key]] = []
 				
 				dict.letter[key][letter[key]].append(letter.title)
+				
+				if key != "rank":
+					data.tags.append(letter[key])
 			
 			dict.letter.title[letter.title] = data
 
@@ -179,8 +187,9 @@ func init_tone() -> void:
 func init_tag() -> void:
 	dict.tag = {}
 	dict.tag.title = {}
+	dict.tag.type = {}
 	
-	var exceptions = ["title", "type"]
+	var exceptions = ["title", "weight"]
 	var path = "res://asset/json/kupu_tag.json"
 	var array = load_data(path)
 	
@@ -192,6 +201,82 @@ func init_tag() -> void:
 				data[key] = tag[key]
 			
 			dict.tag.title[tag.title] = data
+		
+		if !dict.tag.type.has(tag.type):
+			dict.tag.type[tag.type] = {}
+		
+		dict.tag.type[tag.type][tag.title] = tag.weight
+
+
+func init_mission() -> void:
+	dict.mission = {}
+	dict.mission.length = {}
+	
+	var exceptions = ["index", "length", "weight"]
+	var path = "res://asset/json/kupu_mission.json"
+	var array = load_data(path)
+	
+	for mission in array:
+		var morphemes = []
+		mission.length = int(mission.length)
+		
+		for key in mission:
+			if !exceptions.has(key):
+				morphemes.append(mission[key])
+		
+		if !dict.mission.length.has(mission.length):
+			dict.mission.length[mission.length] = {}
+		
+		dict.mission.length[mission.length][morphemes] = mission.weight
+
+
+func init_zone() -> void:
+	dict.zone = {}
+	dict.zone.rank = {}
+	
+	var exceptions = ["rank"]
+	var path = "res://asset/json/kupu_zone.json"
+	var array = load_data(path)
+	
+	for zone in array:
+		var data = {}
+		
+		for key in zone:
+			if !exceptions.has(key):
+				if zone[key] != 0:
+					data[int(key)] = zone[key]
+			
+			dict.zone.rank[int(zone.rank)] = data
+
+
+func init_mask() -> void:
+	dict.mask = {}
+	dict.mask.length = {}
+	
+	var exceptions = ["index", "length", "weight"]
+	var path = "res://asset/json/kupu_mask.json"
+	var array = load_data(path)
+	
+	for mask in array:
+		var morphemes = {}
+		mask.length = int(mask.length)
+		
+		for key in mask:
+			if !exceptions.has(key):
+				if mask[key] != 0:
+					morphemes[key] = mask[key]
+		
+		if !dict.mask.length.has(mask.length):
+			dict.mask.length[mask.length] = {}
+		
+		dict.mask.length[mask.length][morphemes] = mask.weight
+	
+	dict.mask.syllable = {}
+	dict.mask.syllable[2] = [2]
+	dict.mask.syllable[3] = [3]
+	dict.mask.syllable[4] = [2, 2]
+	dict.mask.syllable[5] = [3, 2]
+	dict.mask.syllable[6] = [3, 3]
 
 
 func init_scene() -> void:
@@ -206,6 +291,7 @@ func init_scene() -> void:
 	scene.card = load("res://scene/3/card.tscn")
 	
 	scene.zone = load("res://scene/4/zone.tscn")
+	scene.milestone = load("res://scene/4/milestone.tscn")
 	
 	scene.rune = load("res://scene/5/rune.tscn")
 	scene.syllable = load("res://scene/5/syllable.tscn")
@@ -219,6 +305,8 @@ func init_vec():
 	
 	vec.size.token = Vector2(48, 48)
 	vec.size.rune = Vector2(vec.size.token)
+	vec.size.spot = Vector2(vec.size.token.x, vec.size.token.y * 2)
+	vec.size.tone = Vector2(vec.size.spot.x, vec.size.spot.y / 3)
 	
 	#vec.size.card = {}
 	#vec.size.card.market = Vector2(vec.size.token.x * 2, vec.size.token.y)

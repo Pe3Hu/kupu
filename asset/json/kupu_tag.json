@@ -1,43 +1,43 @@
 [
  {
   "title": "vowel",
-  "type": "feature",
+  "type": "group",
   "weight": 3,
   "point": 5
  },
  {
   "title": "consonant",
-  "type": "feature",
+  "type": "group",
   "weight": 5,
   "point": 3
  },
  {
   "title": "middle",
-  "type": "feature",
+  "type": "group",
   "weight": 4,
   "point": 4
  },
  {
   "title": "edge",
-  "type": "feature",
+  "type": "group",
   "weight": 4,
   "point": 4
  },
  {
   "title": "opening",
-  "type": "feature",
+  "type": "group",
   "weight": 5,
   "point": 3
  },
  {
   "title": "ending",
-  "type": "feature",
+  "type": "group",
   "weight": 3,
   "point": 5
  },
  {
   "title": "letter",
-  "type": "feature",
+  "type": "group",
   "weight": 1,
   "point": 7
  },
@@ -48,7 +48,7 @@
   "point": 4
  },
  {
-  "title": "barishade",
+  "title": "baritone",
   "type": "shade",
   "weight": 3,
   "point": 4

@@ -1,3 +1,5 @@
 VBoxContainer
 HBoxContainer
+GridContainer
+PanelContainer
 MarginContainer

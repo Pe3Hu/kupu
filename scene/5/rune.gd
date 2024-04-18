@@ -3,10 +3,14 @@ extends MarginContainer
 
 #region vars
 @onready var bg = $BG
-@onready var letter = $Letter
+@onready var letter = $VBox/Letter
+@onready var parity = $VBox/Tags/Parity
+@onready var extreme = $VBox/Tags/Extreme
+@onready var phase = $VBox/Tags/Phase
 
 var proprietor = null
 var tone = null
+var tags = []
 #endregion
 
 
@@ -30,10 +34,22 @@ func init_icons(input_: Dictionary) -> void:
 	input.subtype = input_.letter
 	letter.set_attributes(input)
 	letter.custom_minimum_size = Global.vec.size.rune
+	
+	input.type = "tag"
+	tags.append_array(Global.dict.letter.title[input_.letter].tags)
+	
+	for type in Global.dict.letter.title[input_.letter]:
+		input.subtype = Global.dict.letter.title[input_.letter][type]
+		
+		if tags.has(input.subtype):
+			var icon = get(type)
+			icon.set_attributes(input)
+			icon.custom_minimum_size = Global.vec.size.rune
 
 
 func init_bg() -> void:
 	var style = StyleBoxFlat.new()
 	style.bg_color = Global.color.tone[tone]
-	bg.set("theme_override_styles/panel", style)
+	letter.bg.set("theme_override_styles/panel", style)
+	letter.bg.visible = true
 #endregion

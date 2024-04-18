@@ -52,6 +52,12 @@ func update_image() -> void:
 	#var style = StyleBoxFlat.new()
 	#style.bg_color = Color.SLATE_GRAY
 	#bg.set("theme_override_styles/panel", style)
+
+
+func set_type_and_subtype(type_: String, subtype_: String) -> void:
+	type = type_
+	subtype = subtype_
+	update_image()
 #endregion
 
 
